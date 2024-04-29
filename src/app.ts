@@ -1,14 +1,11 @@
 const express = require('express');
 
 const app = express()
+app.use(express.json())
 const PORT = 8000
 
-app.get('/', (req, res) => {
-  res.send('Hello World')
-})
-
-app.get('/about', (req, res) => {
-  res.send('About route 🎉 ')
+app.get('/', (req: any, res: any) => {
+  res.send('Hello World from Akerke')
 })
 
 app.listen(PORT, () => {
