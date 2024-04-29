@@ -1,13 +1,13 @@
-const express = require('express');
+import express from 'express'
+import {SETTINGS} from "./settings"
+import { videosRouter } from './videos'
+//test
+export const app = express()
+app.use(express.json()) // добавление ко всем реквестам body и query
 
-const app = express()
-app.use(express.json())
-const PORT = 8000
-
-app.get('/', (req: any, res: any) => {
-  res.send('Hello World from Akerke')
+app.get('/', (req, res) => {
+  res.send('Hello, first homework')
 })
 
-app.listen(PORT, () => {
-  console.log(`✅ Server is running on port ${PORT}`);
-})
+//app.get(SETTINGS.PATH.VIDEOS, getVideosController)
+app.use(SETTINGS.PATH.VIDEOS, videosRouter)
