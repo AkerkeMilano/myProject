@@ -8,7 +8,7 @@ export type DBType = {
 
 
 const video1: InputVideoType = {
-    id: 345,
+    id: Math.floor(Date.now() + Math.random()*10),
     title: 't' + Date.now() + Math.random(),
     author: 'a' + Date.now() + Math.random(),
     canBeDownloaded: true,
@@ -19,7 +19,7 @@ const video1: InputVideoType = {
 }
 
 const video2: InputVideoType = {
-    id: 655,
+    id: Math.floor(Date.now() + Math.random()*10),
     title: 't' + Date.now() + Math.random(),
     author: 'a' + Date.now() + Math.random(),
     canBeDownloaded: true,

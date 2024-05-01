@@ -32,13 +32,13 @@ const inputValidation = (video: InputVideoType) => {
         })
     }
 
-    if(typeof video.canBeDownloaded !== "boolean") {
+    if(video.canBeDownloaded && typeof video.canBeDownloaded !== "boolean") {
         errors.errorsMessages.push({
             message: 'error!!!',
             field: 'canBeDownloaded'
         }) 
     }
-    if(typeof video.minAgeRestriction !== "number" || video.minAgeRestriction < 1 || video.minAgeRestriction > 18) {
+    if(video.minAgeRestriction && (typeof video.minAgeRestriction !== "number" || video.minAgeRestriction < 1 || video.minAgeRestriction > 18)) {
         errors.errorsMessages.push({
             message: 'error!!!',
             field: 'minAgeRestriction'
@@ -55,6 +55,8 @@ const inputValidation = (video: InputVideoType) => {
 }
 
 export const putVideoController = (req: Request<InputVideoType>, res: Response<OutputErrorsType | InputVideoType | string>) => {
+
+    
     const videoIndex: number  = db.videos.findIndex(v => v.id === +req.params.id)
 
     if(!videoIndex) {
@@ -63,6 +65,8 @@ export const putVideoController = (req: Request<InputVideoType>, res: Response<O
             .json("Video for passed id doesn't exist")
         return
     }
+
+    console.log("body--------", req.body)
 
     const errors = inputValidation(req.body)
     if (errors.errorsMessages.length) {
