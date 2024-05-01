@@ -5,7 +5,7 @@ import {SETTINGS} from '../src/settings'
 import { describe, it } from 'node:test'
 describe('/videos', () => {
     beforeAll(async () => {
-        // await req.delete('/testing/all-data')
+        await req.delete('/testing/all-data')
     })
     it('should get not empty array', async () => {
         setDB(dataset1)
@@ -16,6 +16,6 @@ describe('/videos', () => {
   
         
         expect(res.body.length).toBe(1)
-        //expect(res.body[0]).toEqual(dataset1.videos[0])
+        expect(res.body[0]).toEqual(dataset1.videos[0])
     })
 })
