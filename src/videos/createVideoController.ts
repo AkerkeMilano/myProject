@@ -44,7 +44,7 @@ export const createVideoController = (req: Request<PostVideoType>, res: Response
     }
     const currDate = new Date();
     const newVideo: InputVideoType = {
-        id: Date.now() + Math.random(),
+        id: Math.round(Date.now() + Math.random()),
         canBeDownloaded: false,
         minAgeRestriction: null,
         createdAt: currDate.toISOString(),

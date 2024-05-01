@@ -1,7 +1,7 @@
 import {InputVideoType, Resolutions} from './video-db-type'
  
 export type DBType = {
-    videos: any[] // VideoDBType[]
+    videos: InputVideoType[] // VideoDBType[]
     // some: any[]
 }
 

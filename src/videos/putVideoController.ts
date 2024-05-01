@@ -81,6 +81,6 @@ export const putVideoController = (req: Request<InputVideoType>, res: Response<O
     
     db.videos[videoIndex] = updatedVideo
     res
-        .status(HTTP_STATUSES.CREATED_201)
+        .status(HTTP_STATUSES.NO_CONTENT_204)
         .json(updatedVideo)
 }
