@@ -6,6 +6,5 @@ import { HTTP_STATUSES } from '../settings'
 
 export const getVideosController = (req: Request, res: Response): void => {
     res.status(HTTP_STATUSES.OK_200).json(db.videos)
-    console.log("video: ", db.videos)
 }
  
