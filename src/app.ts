@@ -9,5 +9,4 @@ app.get('/', (req, res) => {
   res.send('Hello, first homework')
 })
 
-//app.get(SETTINGS.PATH.VIDEOS, getVideosController)
 app.use(SETTINGS.PATH.VIDEOS, videosRouter)

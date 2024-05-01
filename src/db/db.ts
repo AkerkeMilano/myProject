@@ -1,12 +1,38 @@
-// import {VideoDBType} from './video-db-type'
+import {InputVideoType, Resolutions} from './video-db-type'
  
 export type DBType = {
     videos: any[] // VideoDBType[]
     // some: any[]
 }
+
+
+
+const video1: InputVideoType = {
+    id: 345,
+    title: 't' + Date.now() + Math.random(),
+    author: 'a' + Date.now() + Math.random(),
+    canBeDownloaded: true,
+    minAgeRestriction: null,
+    createdAt: new Date().toISOString(),
+    publicationDate: new Date((new Date().setDate(new Date().getDate() + 1))).toISOString(),
+    availableResolutions: [Resolutions.P240],
+}
+
+const video2: InputVideoType = {
+    id: 655,
+    title: 't' + Date.now() + Math.random(),
+    author: 'a' + Date.now() + Math.random(),
+    canBeDownloaded: true,
+    minAgeRestriction: null,
+    createdAt: new Date().toISOString(),
+    publicationDate: new Date((new Date().setDate(new Date().getDate() + 1))).toISOString(),
+    availableResolutions: [Resolutions.P480],
+}
+ 
+// ...
  
 export const db: DBType = {
-    videos: [],
+    videos: [video1, video2],
     // some: []
 }
  
