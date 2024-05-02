@@ -7,15 +7,13 @@ export type InputVideoType = {
     minAgeRestriction: number | null,
     createdAt: string,
     publicationDate: string,
-    availableResolutions: [string]
+    availableResolutions: string[]
 }
 
 export type PostVideoType = {
     title: string,
     author: string,
-    availableResolutions: [
-      string | null
-    ]
+    availableResolutions: string[]
 }
 
 export type FindByIdType = {

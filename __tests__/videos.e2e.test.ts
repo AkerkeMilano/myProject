@@ -31,12 +31,11 @@ describe('/videos', () => {
         setDB()
         const newVideo: PostVideoType = {
             title: "About nature",
-            author: "Gabriella",
-            availableResolutions: [Resolutions.P144]
+            author: "Gabrier",
+            availableResolutions: ["P144", "P720"]
         }
  
         const res = await req.post(SETTINGS.PATH.VIDEOS).send(newVideo).expect(HTTP_STATUSES.CREATED_201)
-  
         expect(res.body.title).toBe(newVideo.title)
         expect(res.body.author).toBe(newVideo.author)
         expect(res.body.availableResolutions).toEqual(newVideo.availableResolutions)
@@ -48,7 +47,7 @@ describe('/videos', () => {
         const invalidVideo: PostVideoType = {
             title: "About nature",
             author: "Gabriella",
-            availableResolutions: ["34567"]
+            availableResolutions: ["P144","Invalid","P720"]
         }
 
         const res = await req.post(SETTINGS.PATH.VIDEOS).send(invalidVideo).expect(HTTP_STATUSES.BAD_REQUEST_400)

@@ -11,7 +11,7 @@ const inputValidation = (video: InputVideoType) => {
     }
 
     if (!Array.isArray(video.availableResolutions)
-    || !video.availableResolutions.find(p => p in Resolutions)
+    || video.availableResolutions.map(p => p in Resolutions).find(v => v === false)
     ) {
         errors.errorsMessages.push({
             message: 'error!!!!', field: 'availableResolution'
@@ -31,11 +31,14 @@ const inputValidation = (video: InputVideoType) => {
             field: 'author'
         })
     }
+
     return errors
 }
 
-export const createVideoController = (req: Request<PostVideoType>, res: Response<InputVideoType | OutputErrorsType>) => {
+export const createVideoController = (req: Request, res: Response<InputVideoType | OutputErrorsType>) => {
+    
     const errors = inputValidation(req.body)
+
     if (errors.errorsMessages.length) {
         res
             .status(HTTP_STATUSES.BAD_REQUEST_400)
