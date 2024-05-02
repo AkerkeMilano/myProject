@@ -52,7 +52,7 @@ describe('/videos', () => {
 
         const res = await req.post(SETTINGS.PATH.VIDEOS).send(invalidVideo).expect(HTTP_STATUSES.BAD_REQUEST_400)
         expect(res.body.availableResolutions).not.toEqual(invalidVideo.availableResolutions)
-        expect(res.body.errorsMessages[0].field).toBe('availableResolution')
+        expect(res.body.errorsMessages[0].field).toBe('availableResolutions')
     })
 
     it('should return video by Id', async () => {

@@ -44,13 +44,13 @@ const inputValidation = (video: InputVideoType) => {
             field: 'minAgeRestriction'
         })
     }
-    /*
+    
     if(!isIsoDate(video.publicationDate)) {
         errors.errorsMessages.push({
             message: 'error!!!',
             field: 'publicationDate'
         })
-    }*/
+    }
     return errors
 }
 
