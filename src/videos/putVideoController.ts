@@ -56,18 +56,14 @@ const inputValidation = (video: InputVideoType) => {
 
 export const putVideoController = (req: Request<InputVideoType>, res: Response<OutputErrorsType | InputVideoType | string>) => {
     
-    const videoIndex: number  = db.videos.findIndex(v => v.id === +req.params.id)
-
-    if(!videoIndex) {
+    //const videoIndex: number  = db.videos.findIndex(v => v.id === +req.params.id)
+    const video = db.videos.find(v => v.id === +req.params.id)
+    if(!video) {
         res
             .status(HTTP_STATUSES.NOT_FOUND_404)
             .json("Video for passed id doesn't exist")
         return
     }
-
-    console.log("req params", req.params.id)
-    console.log("video index", videoIndex)
-    console.log("db.videos", db.videos)
 
     const errors = inputValidation(req.body)
     if (errors.errorsMessages.length) {
@@ -79,11 +75,11 @@ export const putVideoController = (req: Request<InputVideoType>, res: Response<O
     db.videos = [...db.videos]
     const currDate = new Date()
     const updatedVideo: InputVideoType = {
-            ...db.videos[videoIndex],
+            ...video,
             ...req.body,
             publicationDate: currDate.toISOString()
         }
-    
+    const videoIndex: number  = db.videos.findIndex(v => v.id === +req.params.id)
     db.videos[videoIndex] = updatedVideo
     res
         .status(HTTP_STATUSES.NO_CONTENT_204)
