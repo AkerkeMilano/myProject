@@ -84,18 +84,31 @@ describe('/videos', () => {
             publicationDate: new Date(),
             availableResolutions: [Resolutions.P480],
         }
-        /*
-        const resId = await req
-            .get(SETTINGS.PATH.VIDEOS + '/' + dataset1.videos[0].id)
-            .expect(HTTP_STATUSES.OK_200)
-        */
-        console.log("res id------", dataset1)
-        console.log("fsfse", db.videos.findIndex(v => v.id === dataset1.videos[0].id))
         
         const res = await req
             .put(SETTINGS.PATH.VIDEOS + '/655')
             .send(updateVideo)
             .expect(HTTP_STATUSES.NO_CONTENT_204)
+    })
+
+    it('should not update video', async () => {
+        setDB(dataset1)
+
+        const updateVideo = {
+            "author":"length_21-weqweqweqwq",
+            "title":"valid title",
+            "availableResolutions":["P240","P720"],"canBeDownloaded":true,
+            "minAgeRestriction":15,
+            "publicationDate":1995
+        }
+        
+        const res = await req
+            .put(SETTINGS.PATH.VIDEOS + '/655')
+            .send(updateVideo)
+            .expect(HTTP_STATUSES.BAD_REQUEST_400)
+
+        expect(res.body.errorsMessages[0].field).toBe('author')
+        expect(res.body.errorsMessages[1].field).toBe('publicationDate')
 
     })
 })

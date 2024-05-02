@@ -58,6 +58,7 @@ export const putVideoController = (req: Request<InputVideoType>, res: Response<O
     
     //const videoIndex: number  = db.videos.findIndex(v => v.id === +req.params.id)
     const video = db.videos.find(v => v.id === +req.params.id)
+
     if(!video) {
         res
             .status(HTTP_STATUSES.NOT_FOUND_404)
@@ -73,11 +74,10 @@ export const putVideoController = (req: Request<InputVideoType>, res: Response<O
         return
     }
     db.videos = [...db.videos]
-    const currDate = new Date()
     const updatedVideo: InputVideoType = {
             ...video,
             ...req.body,
-            publicationDate: currDate.toISOString()
+            //publicationDate: currDate.toISOString()
         }
     const videoIndex: number  = db.videos.findIndex(v => v.id === +req.params.id)
     db.videos[videoIndex] = updatedVideo
