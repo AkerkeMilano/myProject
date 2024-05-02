@@ -14,7 +14,7 @@ const inputValidation = (video: InputVideoType) => {
     || video.availableResolutions.find(p => !(p in Resolutions))
     ) {
         errors.errorsMessages.push({
-            message: 'error!!!!', field: 'availableResolution'
+            message: 'error!!!!', field: 'availableResolutions'
         })
     }
 
