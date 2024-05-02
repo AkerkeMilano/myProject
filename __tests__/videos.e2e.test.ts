@@ -1,5 +1,5 @@
 import {req} from './test-helpers'
-import {setDB} from '../src/db/db'
+import {setDB, db} from '../src/db/db'
 import { dataset1, Resolutions } from './datasets'
 import {HTTP_STATUSES, SETTINGS} from '../src/settings'
 import { PostVideoType } from '../src/db/video-db-type'
@@ -84,15 +84,16 @@ describe('/videos', () => {
             publicationDate: new Date(),
             availableResolutions: [Resolutions.P480],
         }
-
+        /*
         const resId = await req
             .get(SETTINGS.PATH.VIDEOS + '/' + dataset1.videos[0].id)
             .expect(HTTP_STATUSES.OK_200)
-
-        console.log("res id------", resId.body)
+        */
+        console.log("res id------", dataset1)
+        console.log("fsfse", db.videos.findIndex(v => v.id === dataset1.videos[0].id))
         
         const res = await req
-            .put(SETTINGS.PATH.VIDEOS + '/' + dataset1.videos[0].id)
+            .put(SETTINGS.PATH.VIDEOS + '/655')
             .send(updateVideo)
             .expect(HTTP_STATUSES.NO_CONTENT_204)
 

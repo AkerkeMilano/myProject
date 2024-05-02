@@ -55,7 +55,6 @@ const inputValidation = (video: InputVideoType) => {
 }
 
 export const putVideoController = (req: Request<InputVideoType>, res: Response<OutputErrorsType | InputVideoType | string>) => {
-
     
     const videoIndex: number  = db.videos.findIndex(v => v.id === +req.params.id)
 
@@ -66,7 +65,9 @@ export const putVideoController = (req: Request<InputVideoType>, res: Response<O
         return
     }
 
-    console.log("body--------", req.body)
+    console.log("req params", req.params.id)
+    console.log("video index", videoIndex)
+    console.log("db.videos", db.videos)
 
     const errors = inputValidation(req.body)
     if (errors.errorsMessages.length) {

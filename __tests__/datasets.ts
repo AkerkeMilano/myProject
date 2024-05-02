@@ -14,7 +14,7 @@ export enum Resolutions {
 }
 
 export const video1: InputVideoType = {
-    id: Math.round(Date.now() + Math.random()),
+    id: 655,
     title: 't' + Date.now() + Math.random(),
     author: 'a' + Date.now() + Math.random(),
     canBeDownloaded: true,
