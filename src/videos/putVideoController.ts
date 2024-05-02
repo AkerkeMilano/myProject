@@ -45,7 +45,7 @@ const inputValidation = (video: InputVideoType) => {
         })
     }
     
-    if(!isIsoDate(video.publicationDate)) {
+    if(video.publicationDate && !isIsoDate(video.publicationDate)) {
         errors.errorsMessages.push({
             message: 'error!!!',
             field: 'publicationDate'
